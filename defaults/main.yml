@@ -1,0 +1,6 @@
+---
+ruby_version: "ruby-2.2.2"
+ruby_location: "/opt/{{ ruby_version }}"
+ruby_executable: "{{ ruby_location }}/bin/ruby"
+ruby_download_location: "http://cache.ruby-lang.org/pub/ruby/2.2/{{ ruby_version }}.tar.gz"
+ruby_bundler_flags: "--no-document"

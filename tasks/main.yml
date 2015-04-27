@@ -1,0 +1,52 @@
+---
+- name: "update apt cache"
+  apt: update_cache=yes
+
+- name: "get number of cores available for compilation"
+  command: nproc
+  register: cores
+
+- name: "install prerequisite packages"
+  apt: pkg={{ item }}
+  with_items:
+    - build-essential
+    - autoconf
+    - libreadline-dev
+    - libssl-dev
+    - libyaml-dev
+    - zlib1g-dev
+    - libffi-dev
+    - tklib
+
+- name: "download ruby source code"
+  get_url: url={{ ruby_download_location }}
+           dest=/usr/local/src/
+
+- name: "generate ruby installation script"
+  template: src=install-ruby.j2
+            dest=/usr/local/src/install-ruby.sh
+            owner=root
+            group=root
+            mode=700
+
+- name: "run ruby install script"
+  command: /usr/local/src/install-ruby.sh
+           creates={{ ruby_location }}/bin/ruby
+
+- name: "install bundler"
+  command: "{{ ruby_location }}/bin/gem install bundler {{ ruby_bundler_flags }}
+            creates={{ ruby_location }}/bin/bundle"
+
+- name: "make ruby symlinks"
+  file: path=/usr/local/bin/{{ item }}
+        src={{ ruby_location }}/bin/{{ item }}
+        state=link
+  with_items:
+    - bundle
+    - erb
+    - gem
+    - irb
+    - rake
+    - rdoc
+    - ri
+    - ruby
