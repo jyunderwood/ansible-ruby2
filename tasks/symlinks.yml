@@ -1,0 +1,19 @@
+---
+- name: "make ruby symlinks"
+  file: path=/usr/local/bin/{{ item }}
+        src={{ ruby_location }}/bin/{{ item }}
+        state=link
+  with_items:
+    - bundle
+    - erb
+    - gem
+    - irb
+    - rake
+    - rdoc
+    - ri
+    - ruby
+
+- name: "make `current` ruby symlink"
+  file: path={{ ruby_base_dir }}/current
+        src={{ ruby_location }}
+        state=link

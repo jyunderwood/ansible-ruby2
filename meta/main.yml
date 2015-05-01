@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Jonathan Underwood
+  company: jyunderwood.com
+  description: "Installs Ruby 2.2 from source"
+  license: MIT
+  min_ansible_version: 1.6
+
+  categories:
+    - packaging
+    - development
+    - system
+
+dependencies: []

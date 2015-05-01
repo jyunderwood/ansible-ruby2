@@ -1,0 +1,15 @@
+---
+- name: "update apt cache"
+  apt: update_cache=yes
+
+- name: "install prerequisite packages"
+  apt: pkg={{ item }}
+  with_items:
+    - build-essential
+    - autoconf
+    - libreadline-dev
+    - libssl-dev
+    - libyaml-dev
+    - zlib1g-dev
+    - libffi-dev
+    - tklib

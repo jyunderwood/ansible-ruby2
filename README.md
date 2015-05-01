@@ -1,8 +1,6 @@
 # Ansible Ruby 2
 
-By default will install Ruby 2.2.2 from source with bundler.
-
-This is not listed on Ansible Galaxy. I now use the official [RVM ansible role](https://github.com/rvm/rvm1-ansible), but I wanted to keep this source code available for reference.
+By default will install Ruby 2.2.2 from source with bundler. Ruby is installed to `/opt/ruby/2.2.2` with a symlink to `/opt/ruby/current`. Will also make symlinks to `/usr/local/bin/` for default executables.
 
 ## License
 
