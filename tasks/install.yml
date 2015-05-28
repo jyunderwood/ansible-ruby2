@@ -1,8 +1,4 @@
 ---
-- name: "get number of cores available for compilation"
-  command: nproc
-  register: cores
-
 - name: "download source code"
   get_url: url={{ ruby_download_location }}
            dest=/usr/local/src/
